@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'urbanist',
       ),
-      home: const SigninScreen(),
+      home: const SignInScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
