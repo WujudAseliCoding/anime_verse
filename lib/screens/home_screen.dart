@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:anime_verse/widget/app_scaffold.dart';
+import 'package:anime_verse/widget/genre_list.dart';
+import 'package:anime_verse/widget/anime_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -87,6 +89,16 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    SizedBox(height: screenHeight * 0.02),
+
+                    GenreList(),
+
+                    SizedBox(height: screenHeight * 0.03),
+
+                    const AnimeView(),
+
+                    SizedBox(height: screenHeight * 0.025),
 
                   ],
                 ),
