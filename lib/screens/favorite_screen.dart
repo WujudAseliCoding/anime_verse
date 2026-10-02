@@ -32,17 +32,55 @@ class FavoriteScreen extends StatelessWidget {
         children: [
           // Search Bar
           Padding(
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(screenWidth * 0.075),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: screenWidth * 0.02,
-              offset: Offset(0, screenHeight * 0.005),
+            padding: EdgeInsets.all(screenWidth * 0.04),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(screenWidth * 0.075),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    blurRadius: screenWidth * 0.02,
+                    offset: Offset(0, screenHeight * 0.005),
+                  ),
+                ],
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Anime Title",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: screenWidth * 0.04,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                    size: screenWidth * 0.06,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.075),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.075),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.075),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  filled: true,
+                  fillColor: const Color(0xFF0b395e),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.05,
+                    vertical: screenHeight * 0.015,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  color: Colors.white,
+                ),
+              ),
             ),
-          ],
           ),
 
           SizedBox(height: screenHeight * 0.01),
@@ -62,7 +100,6 @@ class FavoriteScreen extends StatelessWidget {
               },
             ),
           ),
-        ],
         ],
       ),
     );
