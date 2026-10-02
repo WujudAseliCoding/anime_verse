@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:anime_verse/widget/app_scaffold.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
