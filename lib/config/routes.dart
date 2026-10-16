@@ -1,11 +1,13 @@
-import "package:flutter/material.dart";
-import 'package:go_router/go_router.dart';
-import 'package:anime_verse/screens/detail_screen.dart';
+import 'package:anime_verse/data/dummy_data.dart';
 import 'package:anime_verse/screens/favorite_screen.dart';
 import 'package:anime_verse/screens/home_screen.dart';
 import 'package:anime_verse/screens/profile_screen.dart';
 import 'package:anime_verse/screens/signin_screen.dart';
 import 'package:anime_verse/screens/signup_screen.dart';
+import 'package:anime_verse/widget/bottom_navigation_shell.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../screens/detail_screen.dart';
 
 class AppRoutes {
   static const String signIn = '/sign-in';
@@ -17,9 +19,9 @@ class AppRoutes {
 }
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>();
 
-GoRouter createRouter() {
+GoRouter createRouter(){
+  // routes.dart
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: AppRoutes.signIn,
@@ -33,7 +35,7 @@ GoRouter createRouter() {
       GoRoute(
         path: AppRoutes.signUp,
         name: 'sign-up',
-        builder: (context, state) => const SignupScreen(),
+        builder: (context, state) => const SignUpScreen(),
       ),
 
       // 2. Detail Route
@@ -43,31 +45,54 @@ GoRouter createRouter() {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           final animeId = state.pathParameters['id'] ?? '';
-          return DetailScreen(animeId: animeId);
+          final anime = DummyData.animeList.firstWhere(
+            (item) => item.id == animeId,
+            orElse: () => DummyData.animeList.first,
+          );
+          return DetailScreen(
+            animeId: anime.id,
+            title: anime.title,
+            imagePath: anime.imagePath,
+            genre: anime.genre,
+            rating: anime.rating,
+            totalEpisodes: anime.totalEpisodes,
+            description: anime.description,
+          );
         },
       ),
 
       // 3. ShellRoute (Untuk Halaman yang menggunakan Bottom Navigation Bar)
-      ShellRoute(
-        navigatorKey: _shellNavigatorKey,
+      StatefulShellRoute.indexedStack(
         builder: (context, state, child) {
-          return BottomNavigationShell(child: child);
+          return BottomNavigationShell(navigationShell: child);
         },
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            name: 'home',
-            builder: (context, state) => const HomeScreen(),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: 'home',
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.favorites,
-            name: 'favorite',
-            builder: (context, state) => const FavoriteScreen(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.favorites,
+                name: 'favorite',
+                builder: (context, state) => const FavoriteScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.profile,
-            name: 'profile',
-            builder: (context, state) => const ProfileScreen(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                name: 'profile',
+                builder: (context, state) => const ProfileScreen(),
+              ),
+            ],
           ),
         ],
       ),

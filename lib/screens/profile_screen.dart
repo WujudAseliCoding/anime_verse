@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:anime_verse/widget/app_scaffold.dart';
 import 'package:anime_verse/widget/profile_button.dart';
+import 'package:go_router/go_router.dart';
+import 'package:anime_verse/config/routes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -178,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Static dummy function
+                  context.go(AppRoutes.signIn);
                 },
                 icon: Icon(
                   Icons.logout,

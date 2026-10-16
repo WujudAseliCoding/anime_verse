@@ -92,6 +92,7 @@ class FavoriteScreen extends StatelessWidget {
               itemCount: 1,
               itemBuilder: (context, index) {
                 return FavoriteAnimeCard(
+                  id: favoriteAnime.id,
                   title: favoriteAnime.title,
                   genre: favoriteAnime.genre,
                   rating: favoriteAnime.rating,

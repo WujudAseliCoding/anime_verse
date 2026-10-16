@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:anime_verse/widget/app_scaffold.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:anime_verse/config/routes.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -134,13 +136,13 @@ class SignupScreen extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.03),
 
-                    // Sign In Button
+                    // Sign Up Button
                     SizedBox(
                       width: double.infinity,
                       height: screenHeight * 0.075,
                       child: ElevatedButton(
                         onPressed: () {
-                          // TODO: Implement sign in functionality
+                          context.go(AppRoutes.home);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue.withValues(alpha: 0.8),
@@ -151,7 +153,7 @@ class SignupScreen extends StatelessWidget {
                           elevation: 5,
                         ),
                         child: Text(
-                          'Sign In',
+                          'Sign Up',
                           style: TextStyle(
                             fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w600,
@@ -226,12 +228,12 @@ class SignupScreen extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.04),
 
-                    // Sign up link
+                    // Sign in link
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have an account? ",
+                          "Already have an account? ",
                           style: TextStyle(
                             fontSize: screenWidth * 0.04,
                             color: Colors.white70,
@@ -239,10 +241,10 @@ class SignupScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: Navigate to sign up screen
+                            context.go(AppRoutes.signIn);
                           },
                           child: Text(
-                            'Sign Up',
+                            'Sign In',
                             style: TextStyle(
                               fontSize: screenWidth * 0.04,
                               fontWeight: FontWeight.w600,
