@@ -3,6 +3,8 @@ import 'package:anime_verse/widget/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:anime_verse/models/anime.dart';
+import 'package:provider/provider.dart';
+import 'package:anime_verse/providers/app_state_provider.dart';
 
 class DetailScreen extends StatelessWidget {
   final String animeId;
@@ -138,7 +140,9 @@ class DetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Rating and Episodes info
-                Row(
+                Wrap(
+                  spacing: screenWidth * 0.03,
+                  runSpacing: screenHeight * 0.015,
                   children: [
                     // Rating
                     Container(
@@ -177,7 +181,6 @@ class DetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: screenWidth * 0.05),
                     // Total Episodes
                     Container(
                       padding: EdgeInsets.symmetric(
@@ -204,44 +207,60 @@ class DetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: screenWidth * 0.05),
                     // Add to Favorites
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.03,
-                        vertical: screenHeight * 0.01,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.3),
-                            blurRadius: screenWidth * 0.02,
-                            offset: Offset(0, screenHeight * 0.005),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(screenWidth * 0.02),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.favorite_border,
-                            color: Colors.white,
-                            size: screenWidth * 0.04,
-                          ),
-                          SizedBox(width: screenWidth * 0.01),
-                          Text(
-                            'Add to Favorites',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: screenWidth * 0.035,
-                              fontWeight: FontWeight.w700,
+                    Consumer<AppStateProvider>(
+                      builder: (context, favoriteProvider, child) {
+                        final isFavorite = favoriteProvider.isFavorite(anime.id);
+
+                        return ExcludeFocus(
+                          child: GestureDetector(
+                            onTap: () {
+                              favoriteProvider.toggleFavorite(anime);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03,
+                                vertical: screenHeight * 0.01,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.3),
+                                    blurRadius: screenWidth * 0.02,
+                                    offset: Offset(0, screenHeight * 0.005),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    isFavorite
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: Colors.white,
+                                    size: screenWidth * 0.04,
+                                  ),
+                                  SizedBox(width: screenWidth * 0.01),
+                                  Text(
+                                    isFavorite
+                                        ? 'Added to Favorites'
+                                        : 'Add to Favorites',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: screenWidth * 0.035,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    )
+                        );
+                      },
+                    ),
                   ],
                 ),
 

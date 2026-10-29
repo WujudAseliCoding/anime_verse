@@ -51,12 +51,6 @@ GoRouter createRouter(){
           );
           return DetailScreen(
             animeId: anime.id,
-            title: anime.title,
-            imagePath: anime.imagePath,
-            genre: anime.genre,
-            rating: anime.rating,
-            totalEpisodes: anime.totalEpisodes,
-            description: anime.description,
           );
         },
       ),
