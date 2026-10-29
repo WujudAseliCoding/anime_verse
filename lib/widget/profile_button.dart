@@ -36,11 +36,7 @@ class ProfileButton extends StatelessWidget {
             color: Colors.blue.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(screenWidth * 0.02),
           ),
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: screenWidth * 0.05,
-          ),
+          child: Icon(icon, color: Colors.white, size: screenWidth * 0.05),
         ),
         title: Text(
           title,

@@ -11,7 +11,7 @@ class FavoriteAnimeCard extends StatelessWidget {
 
   const FavoriteAnimeCard({
     super.key,
-    this.id = '1',
+    required this.id,
     required this.title,
     required this.genre,
     required this.rating,
@@ -76,7 +76,11 @@ class FavoriteAnimeCard extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.01),
                     Row(
                       children: [
-                        Icon(Icons.star, color: Colors.amber, size: screenWidth * 0.04),
+                        Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: screenWidth * 0.04,
+                        ),
                         SizedBox(width: screenWidth * 0.01),
                         Text(
                           rating,

@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
       create: (_) => AppStateProvider(),
       child: MaterialApp.router(
         title: 'AnimeVerse',
-        theme: ThemeData(
-          fontFamily: 'Urbanist',
-        ),
+        theme: ThemeData(fontFamily: 'Urbanist'),
         routerConfig: createRouter(),
         debugShowCheckedModeBanner: false,
       ),

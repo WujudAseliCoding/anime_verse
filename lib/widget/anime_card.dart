@@ -26,7 +26,7 @@ class AnimeCard extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final cardWidth = constraints.maxWidth;
-      
+
           return SizedBox(
             width: cardWidth,
             child: Column(
@@ -45,7 +45,7 @@ class AnimeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-      
+
                 // Title section - compact but readable
                 Expanded(
                   flex: 2,

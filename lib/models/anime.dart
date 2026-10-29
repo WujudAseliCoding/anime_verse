@@ -21,11 +21,27 @@ class Anime {
     return Anime(
       id: json['id']?.toString() ?? '',
       title: json['title']?.toString() ?? '',
-      imagePath: json['imagePath']?.toString() ?? json['image']?.toString() ?? '',
+      imagePath:
+          json['imagePath']?.toString() ?? json['image']?.toString() ?? '',
       genre: json['genre']?.toString() ?? '',
       rating: json['rating']?.toString() ?? '',
-      totalEpisodes: json['totalEpisodes']?.toString() ?? json['episodes']?.toString() ?? '',
+      totalEpisodes:
+          json['totalEpisodes']?.toString() ??
+          json['episodes']?.toString() ??
+          '',
       description: json['description']?.toString() ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'imagePath': imagePath,
+      'genre': genre,
+      'rating': rating,
+      'totalEpisodes': totalEpisodes,
+      'description': description,
+    };
   }
 }
